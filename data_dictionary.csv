@@ -1,0 +1,12 @@
+column,dtype,missing,unique,role
+age,float64,0,58,feature
+sex,float64,0,2,feature
+bmi,float64,0,163,feature
+bp,float64,0,100,feature
+s1,float64,0,141,feature
+s2,float64,0,302,feature
+s3,float64,0,63,feature
+s4,float64,0,66,feature
+s5,float64,0,184,feature
+s6,float64,0,56,feature
+progression,float64,0,214,target

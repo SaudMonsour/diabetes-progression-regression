@@ -1,0 +1,22 @@
+{
+  "original_rows": 442,
+  "original_features": 10,
+  "missing_cells": 0,
+  "missing_by_column": {
+    "age": 0,
+    "sex": 0,
+    "bmi": 0,
+    "bp": 0,
+    "s1": 0,
+    "s2": 0,
+    "s3": 0,
+    "s4": 0,
+    "s5": 0,
+    "s6": 0,
+    "progression": 0
+  },
+  "missing_target_rows_removed": 0,
+  "excluded_columns": [],
+  "exact_duplicates_removed": 0,
+  "usable_rows": 442
+}
