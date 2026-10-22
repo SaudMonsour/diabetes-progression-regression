@@ -1,72 +1,53 @@
-# Diabetes Disease Progression Prediction
+# تقدير تطور السكري
 
-**Regression Study · Machine Learning Benchmark**
+دراسة انحدار لدرجة تطور المرض بعد سنة، اعتمادًا على عشرة قياسات أولية في مجموعة معيارية تضم 442 سجلًا.
 
-Benchmark analysis evaluating baseline clinical predictors for one-year disease progression on the standard scikit-learn diabetes dataset.
+يُقارن انحدار ريدج والغابة العشوائية بخط أساس يعتمد المتوسط. خُصص 89 سجلًا للاختبار، واختير النموذج باستخدام بيانات التدريب. برز مؤشر كتلة الجسم ضمن أهم الخصائص.
 
----
+الانخفاض في خطأ التنبؤ لا يثبت أثرًا علاجيًا. الدراسة معيارية تعليمية، ولا تمثل تشخيصًا أو توجيهًا طبيًا. تفاصيل عدم اليقين والتقسيم في ملفات النتائج والمرجع المرفق.
 
-## Overview
+## النتائج المسجّلة
 
-* **Objective:** Determine whether baseline physiological measurements improve regression predictions over a naive average baseline.
-* **Dataset:** 442 patient records, 10 numerical features.
-* **Selected Model:** **Ridge Regression** (Holdout $RMSE = 53.63$, $R^2 = 0.4572$).
-* **Primary Driver:** Body Mass Index (`bmi`) yielded the largest permutation score drop.
+الأرقام التالية من التنفيذ المحفوظ لهذه النسخة؛ لم تُعَد التجارب أثناء تعريب التوثيق.
 
----
+### التحقق المتقاطع بالطيات
 
-## Key Results
-
-Ridge Regression outperformed both Random Forest and the Dummy Baseline across cross-validation and holdout splits.
-
-### Training Cross-Validation (K-Fold)
-
-| Model | RMSE | Fold SD |
+| النموذج | RMSE | الانحراف المعياري بين الطيات |
 | :--- | :--- | :--- |
-| **Ridge Regression** | **55.73** | 1.70 |
-| Random Forest | 57.09 | 2.49 |
-| Dummy Baseline | 78.20 | 3.03 |
+| **انحدار ريدج** | **55.73** | 1.70 |
+| الغابة العشوائية | 57.09 | 2.49 |
+| خط الأساس البسيط | 78.20 | 3.03 |
 
-### Final Holdout Evaluation (89 Rows)
+### التقييم النهائي على الاختبار المحفوظ (89 سجلًا)
 
-| Model | RMSE | MAE | $R^2$ |
+| النموذج | RMSE | MAE | $R^2$ |
 | :--- | :--- | :--- | :--- |
-| **Ridge Regression** | **53.63** | **42.86** | **0.4572** |
-| Dummy Baseline | 73.22 | 64.01 | -0.0120 |
+| **انحدار ريدج** | **53.63** | **42.86** | **0.4572** |
+| خط الأساس البسيط | 73.22 | 64.01 | -0.0120 |
 
-> **95% Bootstrap CI for Ridge RMSE:** 45.51 – 61.87 (200 resamples).
+## الرسوم والنتائج المرئية
 
----
+![رسم 1: توزيع القيم](figures/distributions.png)
 
-## Data Summary
+![رسم 2: مقارنة النماذج](figures/model-comparison.png)
 
-* **Source:** [scikit-learn Diabetes Toy Dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset)
-* **Quality Check:** 442 total samples, zero missing cells, zero exact duplicates.
-* **Correlations:** Strongest predictor correlation observed between `s1` and `s2` ($\vert{}r\vert{} = 0.891$).
+![رسم 3: أهمية الخصائص](figures/feature-importance.png)
 
----
+![رسم 4: تحليل الأخطاء](figures/error-analysis.png)
 
-## Visualizations
+الرسوم محفوظة من التنفيذ الأصلي. تعريب هذه الصفحة لا يغيّر بياناتها أو تسميات الصور داخل الملفات.
 
-| Target & Distributions | Model Comparison |
-| :---: | :---: |
-| ![Distributions](figures/distributions.png) | ![Model Comparison](figures/model-comparison.png) |
+## الملفات المرجعية
 
-| Feature Importance | Error Analysis |
-| :---: | :---: |
-| ![Feature Importance](figures/feature-importance.png) | ![Error Analysis](figures/error-analysis.png) |
+- [مقاييس التقييم والنتائج](metrics.json).
+- [بيانات التدقيق وبيئة التنفيذ](audit.json).
+- [مصدر البيانات وشروط الترخيص](SOURCE.md).
+- [سجل أخطاء الاختبار](error_analysis.csv).
+- [دفتر شرح التحليل](analysis.ipynb).
+- [ملاحظات المراجعة البشرية](LEARNING_NOTES.md).
 
----
+## المصادر والإسناد
 
-## Repository Structure
+- [مصدر 1: scikit-learn Diabetes Toy Dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset).
 
-```text
-├── figures/                 # Diagnostic and performance plots
-├── analysis.ipynb           # Interactive exploration and pipeline walkthrough
-├── audit.json               # Data integrity and run metadata
-├── data_dictionary.csv      # Feature descriptions and types
-├── descriptive_statistics.csv # Summary stats per feature
-├── error_analysis.csv       # Residuals and largest absolute errors
-├── feature_importance.csv   # Permutation importance rankings
-├── metrics.json             # Final CV and holdout performance metrics
-└── README.md
+[المرجع التقني الإنجليزي الكامل](README.en.md) يحفظ تفاصيل النسخة الأصلية. تُترك أسماء الملفات والأوامر ومعرّفات النماذج والمقاييس بصيغتها التقنية لضمان تطابقها مع الكود.
